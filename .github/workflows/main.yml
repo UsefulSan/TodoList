@@ -60,4 +60,4 @@ jobs:
         passphrase: ${{ secrets.SSH_PASSWORD }}
         script: |
           cd django
-          sudo -S docker-compose up -d | echo ${{ secrets.SSH_PASSWORD }}
+          echo ${{ secrets.SSH_PASSWORD_USER }} | sudo -S docker-compose up -d
