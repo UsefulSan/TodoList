@@ -46,7 +46,7 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_LOGIN }}
-        password: ${{ secrets.SSH_PASSWORD }}
+        key: ${{ secrets.SSH }}
         source: "deploy/docker-compose.yaml, deploy/docker_config.py"
         target: "django"
         strip_components: 1
@@ -55,8 +55,7 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_LOGIN }}
-        password: ${{ secrets.SSH_PASSWORD }}
+        key: ${{ secrets.SSH }}
         script: |
-          whoami 
           cd django
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker-compose up -d
