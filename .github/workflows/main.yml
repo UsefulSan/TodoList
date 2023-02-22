@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Build the Docker image
-      run: docker build -t ${{ env.user }}/todolist-api:${{ env.version }} .
+      run: docker build -t ${{ env.user }}/todolist:${{ env.version }} .
     
     - name: Docker login
       uses: docker/login-action@v2.1.0
@@ -24,4 +24,4 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_TOKEN_FOR_YANDEX_VM }}
           
     - name: Push the Docker image
-      run: docker push ${{ env.user }}/todolist-api:${{ env.version }}
+      run: docker push ${{ env.user }}/todolist:${{ env.version }}
