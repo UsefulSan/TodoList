@@ -42,20 +42,21 @@ jobs:
         cat docker-compose-ci.yaml | envsubst > deploy/docker-compose.yaml
         cat docker_ci_config.py | envsubst > deploy/docker_config.py 
     - name: clone files to server
-      uses: appleboy/scp-action@v0.1.7
+      uses: appleboy/scp-action@master
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_LOGIN }}
         password: ${{ secrets.SSH_PASSWORD }}
-        source: "deploy/docker-compose.yaml,deploy/docker_config.py"
+        source: "deploy/docker-compose.yaml, deploy/docker_config.py"
         target: "django"
         strip_components: 1
     - name: run docker-compose
-      uses: appleboy/ssh-action@v0.1.7
+      uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_LOGIN }}
         password: ${{ secrets.SSH_PASSWORD }}
         script: |
+          whoami 
           cd django
           echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker-compose up -d
