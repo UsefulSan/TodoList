@@ -42,7 +42,7 @@ jobs:
         cat docker-compose-ci.yaml | envsubst > deploy/docker-compose.yaml
         cat docker_ci_config.py | envsubst > deploy/docker_config.py 
     - name: clone files to server
-      uses: appleboy/scp-action@master
+      uses: appleboy/scp-action@v0.1.7
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_LOGIN }}
@@ -51,7 +51,7 @@ jobs:
         target: "django"
         strip_components: 1
     - name: run docker-compose
-      uses: appleboy/ssh-action@master
+      uses: appleboy/ssh-action@v0.1.7
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_LOGIN }}
