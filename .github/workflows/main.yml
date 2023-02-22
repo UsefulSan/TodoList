@@ -21,7 +21,7 @@ jobs:
       uses: docker/login-action@v2.1.0
       with:
         username: ${{ env.user }}
-        password: ${{ secrets.DOCKER_TOKEN }}
+        password: ${{ secrets.DOCKER_HUB_TOKEN_FOR_YANDEX_VM }}
           
     - name: Push the Docker image
       run: docker push ${{ env.user }}/todolist-api:${{ env.version }}
