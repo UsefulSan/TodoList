@@ -48,7 +48,7 @@ jobs:
         username: ${{ secrets.SSH_LOGIN }}
         key: ${{ secrets.SSH }}
         passphrase: ${{ secrets.SSH_PASSWORD }}
-        source: "deploy/docker-compose.yaml, deploy/docker_config.py"
+        source: "deploy/docker-compose.yaml,deploy/docker_config.py"
         target: "django"
         strip_components: 1
     - name: run docker-compose
