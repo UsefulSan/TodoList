@@ -21,6 +21,6 @@ schema_view = get_swagger_view(title='Pastebin API')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth/', include('core.urls'), name='home'),
+    path('api/core/', include('core.urls'), name='home'),
     path(r'swagger/', schema_view),
 ]
