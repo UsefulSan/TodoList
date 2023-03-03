@@ -12,12 +12,17 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True, validators=[validate_password])
-    password_repeat = serializers.CharField(write_only=True)
+    password = serializers.CharField(validators=[validate_password])
+    password_repeat = serializers.CharField()
 
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'password', 'password_repeat']
+
+    # def validate_password_repeat(self, value):
+    #     if value != self.initial_data["password"]:
+    #         raise ValidationError("You entered two different passwords. Please try again.")
+    #     return value
 
     def validate(self, attrs):
         password = attrs.get('password')
@@ -29,4 +34,3 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
-
