@@ -5,3 +5,6 @@ EMAIL_HOST_USER=testforsmjt@yandex.ru
 EMAIL_HOST_PASSWORD=1@345Qw
 EMAIL_PORT=465
 SECRET_KEY=django-insecure-%4!qd*bc+u3k7)9c$-+i99nivfxs3c74-g8+z8emg&&rpz78-a
+ID_APP=51574611
+SECURE_KEY=9sO6d7vAsHgrxKhdrX4F
+

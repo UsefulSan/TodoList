@@ -24,6 +24,11 @@ from rest_framework_swagger.views import get_swagger_view
 schema_view = get_swagger_view(title='Pastebin API')
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('core/', include('core.urls')),
-    path(r'swagger/', schema_view),
+
+    path('swagger/', schema_view),
+
+    path('oauth/', include('social_django.urls', namespace='social')),
+
 ]
