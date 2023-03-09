@@ -13,6 +13,7 @@ import environ
 import os
 import dj_database_url
 import rest_framework.permissions
+import social_django.middleware
 
 env = environ.Env(DEBUG=(bool, False))
 
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'rest_framework',
     'rest_framework_swagger',
     'social_django',
@@ -54,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'todolist.urls'
@@ -69,6 +73,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
             'libraries': {
                 'staticfiles': 'django.templatetags.static',
@@ -137,6 +144,7 @@ SOCIAL_AUTH_VK_OAUTH2_KEY = env('ID_APP')
 SOCIAL_AUTH_VK_OAUTH2_SECRET = env('SECURE_KEY')
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
 SOCIAL_AUTH_VK_APP_USER_MODE = 2
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 
 AUTHENTICATION_BACKENDS = {
     'social_core.backends.vk.VKOAuth2',
@@ -144,6 +152,7 @@ AUTHENTICATION_BACKENDS = {
 }
 
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/categories'
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/'
 
 # LOGIN_URL = '/auth'
 #
