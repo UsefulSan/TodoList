@@ -89,6 +89,7 @@ class GoalCategorySerializer(serializers.ModelSerializer):
 
 
 class GoalCreateSerializer(serializers.ModelSerializer):
+    # category = serializers.PrimaryKeyRelatedField(queryset=GoalCategory.objects.all())
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
@@ -113,6 +114,14 @@ class GoalSerializer(serializers.ModelSerializer):
         model = Goal
         fields = "__all__"
         read_only_fields = ("id", "created", "updated", "user")
+
+    # def validate_category(self, value):
+    #     if value.is_deleted:
+    #         raise serializers.ValidationError("not allowed in deleted category")
+    #
+    #     if self.instance.category.board_id != value.board_id:
+    #         raise serializers.ValidationError("transfer between projects not allowed")
+    #     return value
 
 
 class GoalCommentCreateSerializer(serializers.ModelSerializer):

@@ -13,7 +13,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from core.models import User
-from core.serializers import UserCreateSerializer, UserSerializer, UserProfileRetrieveSerializer, \
+from core.serializers import UserCreateSerializer, UserProfileRetrieveSerializer, \
     UpdatePasswordSerializer
 
 

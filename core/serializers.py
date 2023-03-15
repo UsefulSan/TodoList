@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class UserCreateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(validators=[validate_password])
-    password_repeat = serializers.CharField()
+    password_repeat = serializers.CharField(required=False)
 
     class Meta:
         model = User
