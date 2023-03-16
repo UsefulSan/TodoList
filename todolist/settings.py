@@ -76,13 +76,13 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
+                # 'social_django.context_processors.backends',
+                # 'social_django.context_processors.login_redirect',
             ],
-            'libraries': {
-                'staticfiles': 'django.templatetags.static',
+            # 'libraries': {
+            #     'staticfiles': 'django.templatetags.static',
             }
-        },
+        # },
     },
 ]
 
@@ -111,7 +111,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-REST_FRAMEWORK = {'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+REST_FRAMEWORK = {
+                  # 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
                   'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework.authentication.BasicAuthentication',
                                                      'rest_framework.authentication.SessionAuthentication', ],
                   }
