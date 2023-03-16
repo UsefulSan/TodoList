@@ -18,6 +18,19 @@ class BoardCreateView(CreateAPIView):
     serializer_class = BoardCreateSerializer
 
 
+class BoardListView(ListAPIView):
+    model = Board
+    permission_classes = [BoardPermissions]
+    serializer_class = BoardListSerializer
+    pagination_class = LimitOffsetPagination
+    filter_backends = [filters.OrderingFilter]
+    ordering_fields = ['title']
+    ordering = ["title"]
+
+    def get_queryset(self):
+        return Board.objects.filter(participants__user=self.request.user, is_deleted=False)
+
+
 class BoardView(RetrieveUpdateDestroyAPIView):
     model = Board
     permission_classes = [BoardPermissions]
@@ -33,19 +46,6 @@ class BoardView(RetrieveUpdateDestroyAPIView):
             instance.categories.update(is_deleted=True)
             Goal.objects.filter(category__board=instance).update(status=Goal.Status.archived)
         return instance
-
-
-class BoardListView(ListAPIView):
-    model = Board
-    permission_classes = [BoardPermissions]
-    serializer_class = BoardListSerializer
-    pagination_class = LimitOffsetPagination
-    filter_backends = [filters.OrderingFilter]
-    ordering_fields = ['title']
-    ordering = ["title"]
-
-    def get_queryset(self):
-        return Board.objects.filter(participants__user=self.request.user, is_deleted=False)
 
 
 class GoalCategoryCreateView(CreateAPIView):
