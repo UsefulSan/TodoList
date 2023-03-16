@@ -1,16 +1,12 @@
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.shortcuts import render, redirect
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import ensure_csrf_cookie
-from rest_framework.exceptions import AuthenticationFailed
-from rest_framework.generics import CreateAPIView, RetrieveUpdateAPIView, RetrieveUpdateDestroyAPIView, \
-    get_object_or_404, UpdateAPIView
-from rest_framework.views import APIView
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.generics import CreateAPIView, RetrieveUpdateDestroyAPIView, \
+    UpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from core.models import User
 from core.serializers import UserCreateSerializer, UserProfileRetrieveSerializer, \
@@ -23,8 +19,6 @@ class SignupView(CreateAPIView):
 
 
 class LoginView(APIView):
-    # queryset = User.objects.all()
-    # serializer_class = UserSerializer
     authentication_classes = [SessionAuthentication, BasicAuthentication]
 
     def post(self, request, *args, **kwargs):

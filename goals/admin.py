@@ -8,15 +8,9 @@ class GoalCategoryAdmin(admin.ModelAdmin):
     search_fields = ("title", "user")
 
 
-admin.site.register(GoalCategory, GoalCategoryAdmin)
-
-
 class GoalAdmin(admin.ModelAdmin):
     list_display = ("user", "created", "updated", "title", 'description', 'due_date', 'status', 'priority', 'category')
     search_fields = ("title", "user")
-
-
-admin.site.register(Goal, GoalAdmin)
 
 
 class GoalCommentAdmin(admin.ModelAdmin):
@@ -24,13 +18,25 @@ class GoalCommentAdmin(admin.ModelAdmin):
     search_fields = ("user", 'goal')
 
 
-admin.site.register(GoalComment, GoalCommentAdmin)
+class GoalCommentAdmin(admin.ModelAdmin):
+    list_display = ("user", "created", "updated", 'text', 'goal')
+    search_fields = ("user", 'goal')
+
+
+class GoalCommentAdmin(admin.ModelAdmin):
+    list_display = ("user", "created", "updated", 'text', 'goal')
+    search_fields = ("user", 'goal')
 
 
 class BoardAdmin(admin.ModelAdmin):
-    # list_display = ()
     search_fields = ("user", 'goal', 'title')
 
+
+admin.site.register(GoalCategory, GoalCategoryAdmin)
+
+admin.site.register(Goal, GoalAdmin)
+
+admin.site.register(GoalComment, GoalCommentAdmin)
 
 admin.site.register(Board, BoardAdmin)
 
