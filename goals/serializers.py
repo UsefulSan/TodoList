@@ -131,12 +131,12 @@ class GoalCommentCreateSerializer(serializers.ModelSerializer):
         read_only_fields = ("id", "created", "updated", "user")
         fields = "__all__"
 
-        def validate_category(self, value):
-            if not BoardParticipant.objects.filter(user=self.context["request"].user, board_id=value.category.board_id,
-                                                   role__in=[BoardParticipant.Role.owner,
-                                                             BoardParticipant.Role.writer]).exists():
-                raise serializers.ValidationError("you must be owner or writer")
-            return value
+    def validate_goal(self, value):
+        if not BoardParticipant.objects.filter(user=self.context["request"].user, board_id=value.category.board_id,
+                                               role__in=[BoardParticipant.Role.owner,
+                                                         BoardParticipant.Role.writer]).exists():
+            raise serializers.ValidationError("you must be owner or writer")
+        return value
 
 
 class GoalCommentSerializer(serializers.ModelSerializer):
