@@ -33,6 +33,8 @@ jobs:
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       DB_NAME: ${{ secrets.DB_NAME }}
       SECRET_KEY_FOR_DJANGO: ${{ secrets.SECRET_KEY_FOR_DJANGO }}
+      VK_ID_APP: ${{ secrets.VK_ID_APP }}
+      VK_SECURE_KEY: ${{ secrets.VK_SECURE_KEY }}
     steps:
     - name: clone code
       uses: actions/checkout@v3
@@ -41,7 +43,6 @@ jobs:
       run: |
         mkdir deploy
         cat docker-compose-ci.yaml | envsubst > deploy/docker-compose.yaml
-        cat docker_ci_config.py | envsubst > deploy/docker_config.py
         cat .docker_env | envsubst > deploy/.docker_env
     - name: clone files to server
       uses: appleboy/scp-action@master
