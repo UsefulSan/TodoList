@@ -152,8 +152,8 @@ class GoalCommentListView(ListAPIView):
 
 class GoalCommentView(RetrieveUpdateDestroyAPIView):
     model = GoalComment
-    serializer_class = GoalCommentSerializer
     permission_classes = [CommentPermissions]
+    serializer_class = GoalCommentSerializer
 
     def get_queryset(self):
         return GoalComment.objects.filter(goal__category__board__participants__user=self.request.user)

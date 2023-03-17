@@ -1,4 +1,4 @@
-DEBUG=False
+DEBUG=True
 DATABASE_URL=postgres://postgres:postgres@postgres:5432/todolist
 EMAIL_HOST=smtp.yandex.ru
 EMAIL_HOST_USER=testforsmjt@yandex.ru

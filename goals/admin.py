@@ -18,16 +18,6 @@ class GoalCommentAdmin(admin.ModelAdmin):
     search_fields = ("user", 'goal')
 
 
-class GoalCommentAdmin(admin.ModelAdmin):
-    list_display = ("user", "created", "updated", 'text', 'goal')
-    search_fields = ("user", 'goal')
-
-
-class GoalCommentAdmin(admin.ModelAdmin):
-    list_display = ("user", "created", "updated", 'text', 'goal')
-    search_fields = ("user", 'goal')
-
-
 class BoardAdmin(admin.ModelAdmin):
     search_fields = ("user", 'goal', 'title')
 

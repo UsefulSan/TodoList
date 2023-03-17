@@ -11,8 +11,8 @@ class BoardCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Board
-        read_only_fields = ("id", "created", "updated")
         fields = "__all__"
+        read_only_fields = ("id", "created", "updated")
 
     def create(self, validated_data):
         user = validated_data.pop("user")
@@ -74,8 +74,8 @@ class GoalCategoryCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = GoalCategory
-        read_only_fields = ("id", "created", "updated", "user")
         fields = "__all__"
+        read_only_fields = ("id", "created", "updated", "user")
 
     def validate_board(self, value):
         if value.is_deleted:
@@ -101,8 +101,8 @@ class GoalCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Goal
-        read_only_fields = ("id", "created", "updated", "user")
         fields = "__all__"
+        read_only_fields = ("id", "created", "updated", "user")
 
     def validate_category(self, value):
         if value.is_deleted:
@@ -128,8 +128,8 @@ class GoalCommentCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = GoalComment
-        read_only_fields = ("id", "created", "updated", "user")
         fields = "__all__"
+        read_only_fields = ("id", "created", "updated", "user")
 
     def validate_goal(self, value):
         if not BoardParticipant.objects.filter(user=self.context["request"].user, board=value.category.board,
