@@ -9,9 +9,10 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-import environ
 import os
+
 import dj_database_url
+import environ
 import rest_framework.permissions
 import social_django.middleware
 
@@ -79,10 +80,10 @@ TEMPLATES = [
                 # 'social_django.context_processors.backends',
                 # 'social_django.context_processors.login_redirect',
             ],
-            # 'libraries': {
-            #     'staticfiles': 'django.templatetags.static',
+            'libraries': {
+                'staticfiles': 'django.templatetags.static',
             }
-        # },
+        },
     },
 ]
 
@@ -112,10 +113,10 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 REST_FRAMEWORK = {
-                  # 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
-                  'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework.authentication.BasicAuthentication',
-                                                     'rest_framework.authentication.SessionAuthentication', ],
-                  }
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework.authentication.BasicAuthentication',
+                                       'rest_framework.authentication.SessionAuthentication', ],
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
