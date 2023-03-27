@@ -40,3 +40,5 @@ sqlparse==0.4.3
 tzdata==2022.7
 uritemplate==4.1.1
 urllib3==1.26.14
+
+pydantic~=1.10.6
