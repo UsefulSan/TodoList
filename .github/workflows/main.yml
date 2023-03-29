@@ -1,8 +1,10 @@
 name: Build and deploy action
 
-on:
-  push:
-    branches: [ "master" ]
+on: [push]
+# workflow_dispatch
+#  push:
+#    branches: [ "master" ]
+
 
 env:
   version: $GITHUB_RUN_ID
