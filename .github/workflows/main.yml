@@ -1,8 +1,8 @@
 name: Build and deploy action
 
 on:
-  branches: [ "master" ]
-
+  push:
+    branches: [ "master" ]
 
 env:
   version: $GITHUB_RUN_ID
