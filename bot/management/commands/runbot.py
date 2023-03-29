@@ -50,7 +50,7 @@ class Command(BaseCommand):
             resp_msg = [f"#{item.id} {item.title}" for item in gls]
             self.tg_client.send_message(msg.chat.id, "\n".join(resp_msg))
         else:
-            self.tg_client.send_message(msg.chat.id, "[goals list is empty]")
+            self.tg_client.send_message(msg.chat.id, "Goals list is empty")
 
     def handle_goals_categories(self, msg: Message, tg_user: TgUser):
         categories = GoalCategory.objects.filter(user=tg_user.user, is_deleted=False)
@@ -58,19 +58,19 @@ class Command(BaseCommand):
             resp_msg = [f"#{cat.id} {cat.title}" for cat in categories]
             self.tg_client.send_message(msg.chat.id, "Select category\n" + "\n".join(resp_msg))
         else:
-            self.tg_client.send_message(msg.chat.id, "[you have no categories]")
+            self.tg_client.send_message(msg.chat.id, "You have no categories")
 
     def handle_save_select_category(self, msg: Message, tg_user: TgUser):
         if msg.text.isdigit():
             cat_id = int(msg.text)
             if GoalCategory.objects.filter(user=tg_user.user, is_deleted=False, id=cat_id).exists():
                 self.storage.update_data(chat_id=msg.chat.id, cat_id=cat_id)
-                self.tg_client.send_message(msg.chat.id, '[set title]')
+                self.tg_client.send_message(msg.chat.id, 'Set title]')
                 self.storage.set_state(msg.chat.id, state=StateEnum.CHOSEN_CATEGORY)
             else:
-                self.tg_client.send_message(msg.chat.id, '[category not found]')
+                self.tg_client.send_message(msg.chat.id, 'Category not found')
         else:
-            self.tg_client.send_message(msg.chat.id, "[invalid category id]")
+            self.tg_client.send_message(msg.chat.id, "Invalid category id")
 
     def handle_save_new_cat(self, msg: Message, tg_user: TgUser):
         goal = NewGoal(**self.storage.get_data(tg_user.chat_id))
@@ -82,9 +82,9 @@ class Command(BaseCommand):
                 user=tg_user.user,
                 due_date=datetime.now()
             )
-            self.tg_client.send_message(msg.chat.id, '[new goal created]')
+            self.tg_client.send_message(msg.chat.id, 'New goal created')
         else:
-            self.tg_client.send_message(msg.chat.id, '[something went wrong]')
+            self.tg_client.send_message(msg.chat.id, 'Something went wrong')
 
         self.storage.reset(tg_user.user)
 
@@ -99,7 +99,7 @@ class Command(BaseCommand):
 
         elif "/cancel" in msg.text and self.storage.get_state(tg_user.chat_id):
             self.storage.reset(tg_user.chat_id)
-            self.tg_client.send_message(msg.chat.id, "[canceled]")
+            self.tg_client.send_message(msg.chat.id, "Canceled")
 
         elif state := self.storage.get_state(tg_user.chat_id):
             match state:
@@ -111,7 +111,7 @@ class Command(BaseCommand):
                     logger.warning("Invalid state: %s", state)
 
         elif msg.text.startswith("/"):
-            self.tg_client.send_message(msg.chat.id, "[unknown command]")
+            self.tg_client.send_message(msg.chat.id, "Unknown command")
 
     def handle_message(self, msg: Message):
         tg_user, created = TgUser.objects.get_or_create(
@@ -119,7 +119,7 @@ class Command(BaseCommand):
             defaults={"username": msg.from_.username},
         )
         if created:
-            self.tg_client.send_message(msg.chat.id, "[greeting]")
+            self.tg_client.send_message(msg.chat.id, "Hi")
         if tg_user.user:
             self.handle_verified_user(msg, tg_user)
         else:
