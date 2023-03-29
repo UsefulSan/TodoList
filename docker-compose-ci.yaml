@@ -43,3 +43,15 @@ services:
       retries: 10
     volumes:
       - ./db/postgres:/var/lib/postgresql/data
+
+  bot:
+    image: usefulsan/todolist:$GITHUB_RUN_ID
+    depends_on:
+      postgres:
+        condition: service_healthy
+      migrations:
+        condition: service_completed_successfully
+    volumes:
+      - ./.docker_env:/django/.env
+    command: bash -c "python manage.py runbot"
+    

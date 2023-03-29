@@ -27,6 +27,7 @@ urlpatterns = [
 
     path('core/', include('core.urls')),
     path('goals/', include('goals.urls')),
+    path('bot/', include('bot.urls')),
 
     path('swagger/', schema_view),
 

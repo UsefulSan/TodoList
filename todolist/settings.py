@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     'core',
     'goals',
+    'bot',
 ]
 
 MIDDLEWARE = [
@@ -157,6 +158,8 @@ AUTHENTICATION_BACKENDS = {
 
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/categories'
 SOCIAL_AUTH_LOGIN_ERROR_URL = '/'
+
+T_BOT_TOKEN = env('T_BOT_TOKEN')
 
 # LOGIN_URL = '/auth'
 #

@@ -10,7 +10,7 @@ class TgUser(models.Model):
         verbose_name = "Бот"
 
     chat_id = models.PositiveIntegerField(unique=True)
-    user_id = models.PositiveIntegerField(null=True)
+    username = models.CharField(max_length=255, null=True, blank=True, default=None)
     user = models.ForeignKey(User, verbose_name="Автор", on_delete=models.PROTECT, null=True)
     verification_code = models.CharField(max_length=32, null=True, blank=True, default=None)
 

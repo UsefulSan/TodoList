@@ -36,6 +36,7 @@ jobs:
       DB_NAME: ${{ secrets.DB_NAME }}
       VK_ID_APP: ${{ secrets.VK_ID_APP }}
       VK_SECURE_KEY: ${{ secrets.VK_SECURE_KEY }}
+      T_BOT_TOKEN: ${{ secrets.T_BOT_TOKEN }}
     steps:
     - name: clone code
       uses: actions/checkout@v3
