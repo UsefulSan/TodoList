@@ -1,10 +1,7 @@
 name: Build and deploy action
 
 on:
-  [push]
-# workflow_dispatch
-#  push:
-#    branches: [ "master" ]
+  branches: [ "master" ]
 
 
 env:
