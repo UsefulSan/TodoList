@@ -3,5 +3,10 @@
 stack: python 3.11, postgresql, docker
 
 for a quick start locally, run: 
- - pip install -r requirements.txt
- - py manage.py
+ - docker-compose up --build
+ - url singup - http://localhost/auth
+
+for deploy:
+ - update secrets 'host' on github
+ - update vk ip
+ - restart last workflow or create commit
